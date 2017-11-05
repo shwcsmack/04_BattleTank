@@ -4,6 +4,7 @@
 #include "TankAIController.h"
 
 #include "Engine/World.h"
+#include "Tank.h"
 
 
 void ATankAIController::BeginPlay()
@@ -22,6 +23,15 @@ void ATankAIController::BeginPlay()
 	else {
 		UE_LOG(LogTemp, Warning, TEXT("AI Tank Controller missing pawn or controller"))
 	}
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	
+	if(!GetControlledTank()||!GetPlayerTank()) { return; }
+
+	GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 }
 
 ATank* ATankAIController::GetControlledTank() const
