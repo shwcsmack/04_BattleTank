@@ -34,4 +34,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void AimAt(FVector HitLocation);
+
+private:
+	UPROPERTY(EditAnywhere, Category="Firing")
+	float LaunchSpeed = 100000; //TODO find sensible default
 };
